@@ -11,7 +11,7 @@
 	</prerequisites>
 
 	<properties>
-		<opencast.version>2.3.0</opencast.version>
+		<opencast.version>2.2.1</opencast.version>
 		<paella.version>${project.version}</paella.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -48,8 +48,8 @@
 									<goal>install-node-and-npm</goal>
 								</goals>
 								<configuration>
-									<nodeVersion>v8.0.0</nodeVersion>
-									<npmVersion>5.0.0</npmVersion>
+									<nodeVersion>v6.9.2</nodeVersion>
+									<npmVersion>3.10.9</npmVersion>
 								</configuration>
 							</execution>
 							

@@ -7,6 +7,15 @@ var spawn = require('child_process').spawn;
 var gls = require('gulp-live-server');
 var mergeStream = require('merge-stream');
 
+function runSequence( tasks ) {
+    if( !tasks || tasks.length <= 0 ) return;
+    const task = tasks[0];
+    gulp.start( task, function() {
+        console.log( task + " finished" );
+        runSequence( tasks.slice(1) );
+    });
+}
+
 gulp.task('paella-opencast:clean', function () {
     return gulp.src('build', {read: false}).pipe(clean());
 });
@@ -29,7 +38,6 @@ gulp.task('paella-opencast:prepare', ['paella-opencast:prepare:source'], functio
 
 
 gulp.task('paella-opencast:compile.debug', ['paella-opencast:prepare'], function (cb) {
-    gulp.run('beuth');
     var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.debug'], {cwd: 'build/paella'/*, stdio: 'inherit'*/});
     cmd_npm.on('close', function (code) {
         cb(code);
@@ -37,21 +45,23 @@ gulp.task('paella-opencast:compile.debug', ['paella-opencast:prepare'], function
 });
 
 gulp.task('paella-opencast:compile.release', ['paella-opencast:prepare'], function (cb) {
-    gulp.run('beuth');
     var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.release'], {cwd: 'build/paella'/*, stdio: 'inherit'*/});
     cmd_npm.on('close', function (code) {
+        console.log(code);
         cb(code);
     });
 });
 
 
 gulp.task('paella-opencast:build', ["paella-opencast:compile.debug"], function () {
-    var s1 = gulp.src('build/paella/build/player/**').pipe(gulp.dest('build/paella-opencast'));
-    var s2 = gulp.src('paella-opencast/ui/**').pipe(gulp.dest('build/paella-opencast'));
-
-    return mergeStream(s1, s2);
+    runSequence(['paellaCustomBuild', 'beuth']);
 });
 
+gulp.task('paellaCustomBuild', ["paella-opencast:compile.debug"], function () {
+    var s1 = gulp.src('build/paella/build/player/**').pipe(gulp.dest('build/paella-opencast'));
+    var s2 = gulp.src('paella-opencast/ui/**').pipe(gulp.dest('build/paella-opencast'));
+    return  mergeStream(s1, s2);
+});
 
 gulp.task('paella-opencast:server', function () {
     var server = gls.static('build/paella-opencast', 8000);

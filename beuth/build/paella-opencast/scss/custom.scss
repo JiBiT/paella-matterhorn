@@ -1,0 +1,32 @@
+$colors: (
+    highlight: #00a5a5
+);
+
+$gutter: 5px;
+
+.beuth-logo {
+    max-height: 100%;
+}
+.hero-image {
+    background: transparent url(../images/beuthbox-banner.jpg) center;
+    background-size: cover;
+    border-bottom: $gutter solid map-get($colors, highlight);
+    border-top: $gutter solid map-get($colors, highlight);
+    height: 50vh;
+    margin: (2 * $gutter) auto (8 * $gutter) auto;
+    max-height: 80vw;
+    position: relative;
+}
+.container {
+    padding: 0;
+    width: 100%;
+}
+
+.container .loading {
+    padding: 15px;
+}
+
+.opencast-video {
+
+}
+

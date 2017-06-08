@@ -1,0 +1,19 @@
+.beuth-logo {
+  max-height: 100%; }
+
+.hero-image {
+  background: transparent url(../images/beuthbox-banner.jpg) center;
+  background-size: cover;
+  border-bottom: 5px solid #00a5a5;
+  border-top: 5px solid #00a5a5;
+  height: 50vh;
+  margin: 10px auto 40px auto;
+  max-height: 80vw;
+  position: relative; }
+
+.container {
+  padding: 0;
+  width: 100%; }
+
+.container .loading {
+  padding: 15px; }

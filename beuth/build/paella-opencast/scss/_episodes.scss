@@ -1,0 +1,56 @@
+.episodes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    .opencast-episode {
+        flex: 1 1 auto;
+        margin: $video-gutter;
+        min-width: $tile-min-size;
+        height: $tile-min-size;
+        padding: 0;
+        position: relative;
+    }
+    .opencast-video {
+        box-shadow: 0 0 3px 2px rgba(0, 0, 0, .1);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
+        .content {
+            align-items: flex-start;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            box-shadow: inset 0 (-$tile-min-size * 0.66) $tile-min-size (-$tile-min-size * 0.33) rgba(0, 0, 0, .75);
+            color: map-get($colors, lightest);
+            display: flex;
+            flex: 1 0 auto;
+            flex-direction: column;
+            height: 100%;
+            justify-content: flex-end;
+            transition: all .3s ease;
+        }
+        &:hover {
+            .content {
+                box-shadow: inset 0 (-$tile-min-size * 0.66) 0 (-$tile-min-size * 0.33) rgba(0, 0, 0, .75);
+                transform: scale3d(1.2, 1.2, 1);
+            }
+        }
+        .info-data {
+            bottom: 0;
+            color: map-get($colors, lightest);
+            left: 0;
+            padding: 2 * $gutter;
+            position: absolute;
+            width: 100%;
+            .info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+    }
+}

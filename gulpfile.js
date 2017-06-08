@@ -74,5 +74,5 @@ gulp.task('paella-opencast:beuth', function () {
 
 gulp.task('paella-opencast:beuth-watch', function () {
     gulp.run('paella-opencast:server');
-    gulp.watch('beuth/build/paella-opencast/scss/**/*.scss', ['paella-opencast:beuth']);
+    gulp.watch('beuth/build/paella-opencast/**/*', ['paella-opencast:beuth']);
 });

@@ -1,11 +1,12 @@
-$colors: (
-    highlight: #00a5a5
-);
+@import 'font-awesome/font-awesome';
+@import 'variables';
+@import 'navbar';
+@import 'footer';
+@import 'episodes';
 
-$gutter: 5px;
-
-.beuth-logo {
-    max-height: 100%;
+body {
+    background-color: map-get($colors, highlight-faded);
+    padding-top: 180px;
 }
 .hero-image {
     background: transparent url(../images/beuthbox-banner.jpg) center;
@@ -20,13 +21,24 @@ $gutter: 5px;
 .container {
     padding: 0;
     width: 100%;
+    .loading {
+        padding: 15px;
+    }
 }
-
-.container .loading {
-    padding: 15px;
+@media (min-width: 768px) {
+    body {
+        padding-top: 70px;
+    }
+    .navbar .nav-container {
+        flex-direction: row;
+    }
+    .navbar-header {
+        display: block;
+    }
+    .navbar .nav-container .navbar-form {
+        margin: 8px -15px;
+        button {
+            margin-right: 2 * $gutter;
+        }
+    }
 }
-
-.opencast-video {
-
-}
-

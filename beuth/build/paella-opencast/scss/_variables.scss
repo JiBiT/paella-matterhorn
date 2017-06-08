@@ -1,0 +1,17 @@
+$colors: (
+        highlight: #00a5a5,
+        highlight-faded: #e0efef,
+        medium: #ccc,
+        lightest: #fff
+);
+
+$font-sizes: (
+        navbar: 16px,
+        search-icon: 20px
+);
+
+$gutter: 5px;
+$video-gutter: (2 * $gutter);
+$tile-min-size: 320px - (2 * $video-gutter);
+$navbar-list-height: 34px;
+$footer-height: 30px;

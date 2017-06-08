@@ -29,6 +29,7 @@ gulp.task('paella-opencast:prepare', ['paella-opencast:prepare:source'], functio
 
 
 gulp.task('paella-opencast:compile.debug', ['paella-opencast:prepare'], function (cb) {
+    gulp.run('beuth');
     var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.debug'], {cwd: 'build/paella'/*, stdio: 'inherit'*/});
     cmd_npm.on('close', function (code) {
         cb(code);
@@ -36,6 +37,7 @@ gulp.task('paella-opencast:compile.debug', ['paella-opencast:prepare'], function
 });
 
 gulp.task('paella-opencast:compile.release', ['paella-opencast:prepare'], function (cb) {
+    gulp.run('beuth');
     var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.release'], {cwd: 'build/paella'/*, stdio: 'inherit'*/});
     cmd_npm.on('close', function (code) {
         cb(code);
@@ -59,7 +61,7 @@ gulp.task('paella-opencast:server', function () {
 gulp.task('default', ['paella-opencast:build']);
 
 /* CUSTOM */
-gulp.task('paella-opencast:beuth', function () {
+gulp.task('beuth', function () {
     var s1 = gulp.src('beuth/build/paella-opencast/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({
@@ -72,7 +74,7 @@ gulp.task('paella-opencast:beuth', function () {
     return mergeStream(s1, s2);
 });
 
-gulp.task('paella-opencast:beuth-watch', function () {
+gulp.task('beuth-watch', function () {
     gulp.run('paella-opencast:server');
     gulp.watch('beuth/build/paella-opencast/**/*', ['paella-opencast:beuth']);
 });

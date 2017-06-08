@@ -15,12 +15,12 @@
         }
     }
     .nav-container {
-        display: flex;
         flex: 1 1 auto;
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
+        display: none; // display: flex;
         .navbar-form {
             border: 0;
             box-shadow: none;

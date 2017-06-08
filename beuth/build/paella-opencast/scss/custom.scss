@@ -6,7 +6,7 @@
 
 body {
     background-color: map-get($colors, highlight-faded);
-    padding-top: 180px;
+    padding-top: 70px;
 }
 .hero-image {
     background: transparent url(../images/beuthbox-banner.jpg) center;
@@ -17,6 +17,27 @@ body {
     margin: (2 * $gutter) auto (8 * $gutter) auto;
     max-height: 80vw;
     position: relative;
+}
+.opencast-toolbar {
+    display: none;
+}
+.loading-indicator {
+    height: $tile-loading-size + (3 * $gutter);
+    position: relative;
+    &:after {
+        border: 3px solid map-get($colors, highlight);
+        border-left-color: transparent;
+        border-right-color: transparent;
+        border-radius: 50%;
+        content: '';
+        height: $tile-loading-size;
+        left: 50%;
+        margin: (3 * -$gutter)px auto auto (3 * -$gutter)px;
+        position: absolute;
+        top: 0;
+        width: $tile-loading-size;
+        animation: loading 900ms 0s infinite linear
+    }
 }
 .container {
     padding: 0;
@@ -37,8 +58,9 @@ body {
     }
     .navbar .nav-container .navbar-form {
         margin: 8px -15px;
-        button {
-            margin-right: 2 * $gutter;
-        }
     }
+}
+
+@keyframes loading {
+    100% {transform: rotate(360deg);}
 }

@@ -6,9 +6,11 @@
 
     <title>Paella Player Engage</title>
 
-    <script type="text/javascript" src="javascript/jquery.js"></script>
+    <script type="text/javascript" src="lib/jquery/jquery.js"></script>
+    <script type="text/javascript" src="lib/moment/moment.js"></script>
     <script type="text/javascript" src="lib/angular/angular.min.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/infiniteScroll/infinite.js"></script>
     <script type="text/javascript" src="javascript/opencast-engage.js"></script>
 
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css"/>
@@ -33,57 +35,19 @@
                 </div>
                 <button type="submit" class="btn btn-default fa fa-search" ng-click="search()"></button>
             </form>
-
-            <form class="navbar-form navbar-right" role="search">
-
-            </form>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="hero-image"></div>
-    <div ng-show="loading">
-        <img class="img-responsive center-block" src="images/ajax_loader.gif">
-    </div>
-    <div ng-hide="loading">
+    <div>
         <h3 ng-show="q.length > 0">Results {{(page*limit)+1}}-{{(page+1)*limit}} of {{searchResult.total}} for "{{q}}"</h3>
         <div class="episodes">
-            <opencast-episode class="opencast-episode" ng-repeat="r in searchResult.result" episode="r"></opencast-episode>
-        </div>
-        <div class="clearfix"></div>
-        <div class="btn-toolbar opencast-toolbar" role="toolbar">
-            <div class="btn-group">
-                <ul class="pager opencast-navigation">
-                    <li ng-class="{disabled: page<=0}">
-                        <a href="#" ng-click="goPreviousPage();">
-                            <span aria-hidden="true">&larr;</span> Previous
-                        </a>
-                    </li>
-                    <li ng-class="{disabled: page>=lastPage}">
-                        <a href="#" ng-click="goNextPage();">
-                            Next <span aria-hidden="true">&rarr;</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-
-            <div class="btn-group dropup pull-right">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{limit}} <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a href="#" ng-click="itemsPerPage(10)">10</a></li>
-                    <li><a href="#" ng-click="itemsPerPage(20)">20</a></li>
-                    <li><a href="#" ng-click="itemsPerPage(30)">30</a></li>
-                    <li><a href="#" ng-click="itemsPerPage(50)">50</a></li>
-                    <li><a href="#" ng-click="itemsPerPage(100)">100</a></li>
-                    <li><a href="#" ng-click="itemsPerPage(200)">200</a></li>
-                </ul>
-            </div>
+            <opencast-episode class="opencast-episode" ng-repeat="r in searchResult.result" ng-if="r.id" episode="r"></opencast-episode>
         </div>
     </div>
-    <footer>
+    <div ng-show="loading" class="loading-indicator"></div>
+    <footer infinite-scroll="getMoreEpisodes()" infinite-scroll-distance="0">
         <ul class="links">
             <li>
                 <a class="impressum" href="https://www.beuth-hochschule.de/impressum/" role="menuitem" tabindex="3">Impressum/Datenschutz</a>

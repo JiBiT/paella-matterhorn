@@ -1,10 +1,12 @@
 "use strict";
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-const autoprefixer = require('gulp-autoprefixer');
+var autoprefixer = require('gulp-autoprefixer');
 var clean = require('gulp-clean');
+var replace = require('gulp-replace');
 var spawn = require('child_process').spawn;
 var gls = require('gulp-live-server');
+var gulpif = require('gulp-if');
 var mergeStream = require('merge-stream');
 var env = require('gulp-env');
 
@@ -92,7 +94,9 @@ gulp.task('beuth', function () {
         filesToCopy.push('!beuth/build/paella-opencast/{search,search/**}');
     }
 
-    var s2 = gulp.src(filesToCopy).pipe(gulp.dest('build/'));
+    var s2 = gulp.src(filesToCopy)
+        .pipe(gulpif('paella-opencast/javascript/opencast-engage.js', replace('$HOST_URL', process.env.HOST_URL)))
+        .pipe(gulp.dest('build/'));
 
     return mergeStream(s1, s2);
 });
@@ -100,6 +104,7 @@ gulp.task('beuth', function () {
 gulp.task('beuth-serve', ['set-dev-env'], function() {
     var server = gls.static('build/paella-opencast', 8000);
     server.start();
+    gulp.start('beuth');
     gulp.watch(['beuth/build/paella-opencast/**/*'], function(file) {
         gulp.start('beuth');
         server.notify.apply(server, [file]);
@@ -109,6 +114,7 @@ gulp.task('beuth-serve', ['set-dev-env'], function() {
 gulp.task('set-dev-env', function() {
     env({
         vars: {
+            HOST_URL: 'http://141.64.153.82:8080',
             NODE_ENV: "development"
         }
     });
@@ -117,6 +123,7 @@ gulp.task('set-dev-env', function() {
 gulp.task('set-prod-env', function() {
     env({
         vars: {
+            HOST_URL: '',
             NODE_ENV: "production"
         }
     });

@@ -1,6 +1,6 @@
 (function () {
+    var HOST_URL = '$HOST_URL';
     var app = angular.module('opencastEngage', ['infinite-scroll']);
-    var TEST_HOST = process.env.NODE_ENV === 'development' ? 'http://141.64.153.82:8080' : '';
     app.directive('opencastEpisode', [function () {
         return {
             restrict: 'E',
@@ -101,7 +101,7 @@
             var page = $scope.page || 0;
             var offset = page * limit;
             var sort = $scope.sort || "";
-            var url = TEST_HOST + '/search/episode.json?limit=' + limit + '&offset=' + offset + '&q=' + q + '&sort=' + sort;
+            var url = HOST_URL + '/search/episode.json?limit=' + limit + '&offset=' + offset + '&q=' + q + '&sort=' + sort;
 
             $scope.loading = true;
             $http.get(url).then(function (res) {
@@ -122,7 +122,7 @@
                 var page = $scope.page || 0;
                 var offset = page * limit;
                 var sort = $scope.sort || "";
-                var url = TEST_HOST + '/search/episode.json?limit=' + limit + '&offset=' + offset + '&q=' + q + '&sort=' + sort;
+                var url = HOST_URL + '/search/episode.json?limit=' + limit + '&offset=' + offset + '&q=' + q + '&sort=' + sort;
 
                 $scope.loading = true;
                 $http.get(url).then(function (res) {

@@ -1,0 +1,18 @@
+$video-controls-height: 56px;
+$video-height: 360px;
+
+#playerContainer {
+    background: map-get($colors, highlight-faded) !important;
+    display: block;
+    margin: (8 * $gutter) 0;
+    min-height: $video-height;
+    position: relative;
+    width: 100%;
+    margin-bottom: $video-controls-height;
+    &_videoContainer{
+        height: 100%;
+    }
+    &_controls_playback {
+        bottom: -$video-controls-height;
+    }
+}

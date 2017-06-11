@@ -3,6 +3,7 @@
 @import 'navbar';
 @import 'footer';
 @import 'episodes';
+@import 'player';
 
 body {
     background-color: map-get($colors, highlight-faded);

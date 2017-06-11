@@ -2718,6 +2718,19 @@ footer {
         -ms-flex-pack: justify;
         justify-content: space-between; }
 
+#playerContainer {
+  background: #e0efef !important;
+  display: block;
+  margin: 40px 0;
+  min-height: 360px;
+  position: relative;
+  width: 100%;
+  margin-bottom: 56px; }
+  #playerContainer_videoContainer {
+    height: 100%; }
+  #playerContainer_controls_playback {
+    bottom: -56px; }
+
 body {
   background-color: #e0efef;
   padding-top: 70px; }

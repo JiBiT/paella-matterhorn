@@ -17,10 +17,20 @@
     display: block;
     float: right;
     font-weight: 400;
-    margin-top: 1em;
-    padding: 1.2em 0.15em;
+    font-size: 16px;
+    margin-top: 0;
+    padding: 1.1em .15em;
     position: relative;
     width: 100%;
+}
+.input-field:focus {
+    font-size: 16px;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .input-field,
+    .input-field:focus {
+        font-size: 16px;
+    }
 }
 .input-field:focus {
     outline: none;
@@ -28,8 +38,6 @@
 .input-label {
     bottom: 0;
     color: map-get($colors, lightest);
-    display: inline-block;
-    float: right;
     font-weight: bold;
     font-size: 90%;
     height: calc(100% - 1em);
@@ -44,7 +52,7 @@
 .input-label-content {
     position: absolute;
     display: block;
-    padding: 1.6em 0;
+    padding: 1em 0;
     width: 100%;
 }
 .input-label:before,
@@ -78,10 +86,10 @@
     }
     51% {
         opacity: 0;
-        transform: translate3d(-1em, -30%, 0);
+        transform: translate3d(-1em, -40%, 0);
     }
     100% {
         opacity: 1;
-        transform: translate3d(0, -30%, 0);
+        transform: translate3d(0, -40%, 0);
     }
 }

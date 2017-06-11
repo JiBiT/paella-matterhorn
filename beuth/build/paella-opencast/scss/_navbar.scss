@@ -38,14 +38,17 @@
             padding: 0 10px;
         }
     }
-
-
     .nav-container {
         .navbar-form {
             border: 0;
             box-shadow: none;
+            height: 100%;
             margin: 0;
             padding: 0;
+            .form-group {
+                height: 100%;
+                margin: 0;
+            }
         }
         .navbar-left,
         .navbar-right {

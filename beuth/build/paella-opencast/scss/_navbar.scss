@@ -1,35 +1,46 @@
 .navbar {
     background-color: map-get($colors, highlight);
-    padding-left: 2 * $gutter;
+    padding: 0;
     .container {
         display: flex;
         flex-direction: row;
         height: 50px;
-    }
-    .navbar-header {
-        justify-content: center;
-        display: block;
-    }
-    .navbar-brand {
-        padding: 12px 12px;
-    }
-    .beuth-logo {
-        background-color: white;
-        padding: (6 * $gutter) (2 * $gutter);
-        border-radius: $gutter;
-        box-shadow: 0 0 2px 1px rgba(0, 0, 0, .1);
-        img {
-            max-height: 100%;
-            margin-top: $gutter;
+        .navbarheader {
+            justify-content: center;
+            display: block;
+            flex: 0 1 auto;
+            margin: 0 $gutter;
+            .beuth-logo {
+                align-items: center;
+                background-color: white;
+                border-bottom-left-radius: $gutter;
+                border-bottom-right-radius: $gutter;
+                box-shadow: 0 0 2px 1px rgba(0, 0, 0, .1);
+                display: flex;
+                flex: 1 1 auto;
+                height: $navbar-height + (4 * $gutter);
+                padding: 0 (2 * $gutter);
+                img {
+                    display: block;
+                    height: 34px;
+
+                    width: 110px;
+                }
+            }
+        }
+        .nav-container {
+            align-items: center;
+            display: flex;
+            flex: 1 1 auto;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            padding: 0 10px;
         }
     }
+
+
     .nav-container {
-        flex: 1 1 auto;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: space-between;
-        display: flex;
         .navbar-form {
             border: 0;
             box-shadow: none;

@@ -8,6 +8,9 @@ body {
     background-color: map-get($colors, highlight-faded);
     padding-top: 70px;
 }
+body * {
+    box-sizing: border-box;
+}
 .hero-image {
     border-bottom: $gutter solid map-get($colors, highlight);
     border-top: $gutter solid map-get($colors, highlight);

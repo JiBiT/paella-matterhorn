@@ -1,44 +1,18 @@
-Paella Player for Opencast
-============================
-This is the Paella player for opencast bundle.
-
-![Paella Player Logo](doc/images/paella_mh.png)
-
-Paella Player
-=============
-The Paella (pronounce “paeja”) Player is a HTML5 multistream video player capable of playing multiple audio & video streams synchronously and supporting a number of user plugins. It is specially designed for lecture recordings, like Matterhorn Lectures or Polimedia pills.
-
-By using Paella students can view both the lecture hall and the teacher's screen, get info about the lecture (slides, OCR, series videos, footprints) and interact with the lecture (views, comments). Teachers can also soft edit the lecture to set the start and end point or make breaks in the recording. 
-
-If you want to use Paella player, but does not have a Matterhorn installation, you can use the [standalone](https://github.com/polimediaupv/paella) version of paella.
-
-Main characteristics
-====================
-- Multi stream video player
-- Based in HTML5 and Javascript
-- Resize position/size of video windows while playing
-- Play/Pause/30 seconds back controls
-- Jump anywhere in the video keeping both tracks in sync
-- Jump by clicking on the slide list
-- High quality slides while seeking
-- Can handle progressive download, pseudostreaming and RTMP streaming servers
-- Support of .flv and .mp4 files
-- Easily change the relative position of presenter and presentation windows
-- Native Fullscreen version
-- Embeddable
-- “Publish to” buttons for Facebook and Twitter
-- Captions support
-- Comments (experimental)
-- Easy skinning
-- Easy install
-- Soft Editing features: Trimming and breaks
-- Support of Chrome, Firefox, Safari and Internet Explorer 9 an 10 browsers
-- Compatible with Opencast Matterhorn 1.4
+#Beuth: Paella Player for Opencast
 
 
-Build and Install
-=================
+## Scripts:
+### On host system
+    
+    cd /path/to/this/repository
+    mvn clean install
+    sudo scp target/paella-engage-ui-5.1.13.jar ikarus@141.64.153.82:~/
 
-To build Paella Player for Opencast, please read the [documentation](doc/README.md).
-
-[![Build Status](https://travis-ci.org/polimediaupv/paella-matterhorn.svg?branch=master)](https://travis-ci.org/polimediaupv/paella-matterhorn)
+### On remote system
+    sudo rm -rf /opt/opencast/deploy/paella-engage-ui-*.jar
+    sudo chown opencast ~/paella-engage-ui-5.1.13.jar
+    sudo chgrp opencast ~/paella-engage-ui-5.1.13.jar
+    sudo chmod +x ~/paella-engage-ui-5.1.13.jar
+    sudo mv ~/paella-engage-ui-5.1.13.jar /opt/opencast/deploy/paella-engage-ui-5.1.13.jar
+    sudo /opt/opencast/bin/stop-opencast
+    sudo nohup /opt/opencast/bin/start-opencast

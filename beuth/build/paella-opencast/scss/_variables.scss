@@ -15,7 +15,7 @@ $font-sizes: (
 
 $gutter: 5px;
 $video-gutter: (2 * $gutter);
-$tile-min-size: 320px - (2 * $video-gutter);
+$tile-min-size: 320px - (4 * $video-gutter);
 $navbar-list-height: 34px;
 $footer-height: 30px;
 $tile-loading-size: 50px;

@@ -5,26 +5,47 @@ footer {
     flex: 1 1 auto;
     height: $footer-height;
     justify-content: center;
+    margin-top: (8 * $gutter);
     text-align: center;
     width: 100%;
     .links {
         align-items: center;
         display: flex;
-        flex: 0 1 auto;
+        flex: 1 1 auto;
         flex-direction: row;
+        height: 100%;
         list-style: none;
         margin: 0;
-        padding: 0;
+        padding: 0 (2 * $gutter);
+        position: relative;
         a,
         a:visited {
             color: map-get($colors, lightest);
-            font-weight: 700;
-            font-size: map-get($font-sizes, navbar);
+            font-weight: 400;
+            font-size: map-get($font-sizes, footer);
             transition: all .3s ease;
             &:focus,
             &:hover {
                 text-decoration: underline;
             }
+        }
+    }
+    .links-left {
+        justify-content: flex-start;
+    }
+    .links-right {
+        justify-content: flex-end;
+        li {
+            height: 100%;
+        }
+        a {
+            display: flex;
+            height: 100%;
+        }
+        img {
+            align-self: center;
+            display: block;
+            height: 80%;
         }
     }
 }

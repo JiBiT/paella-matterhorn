@@ -9,17 +9,55 @@ body {
     padding-top: 70px;
 }
 .hero-image {
-    background: transparent url(../images/beuthbox-banner.jpg) center;
-    background-size: cover;
     border-bottom: $gutter solid map-get($colors, highlight);
     border-top: $gutter solid map-get($colors, highlight);
-    height: 50vh;
-    margin: (2 * $gutter) auto (8 * $gutter) auto;
-    max-height: 80vw;
+    margin: (2 * $gutter) auto (4 * $gutter) auto;
     position: relative;
+    img {
+        display: block;
+        width: 100%;
+    }
+}
+.search-heading {
+    margin: (4 * $gutter) (2 * $gutter) (2 * $gutter) (2 * $gutter);
 }
 .opencast-toolbar {
-    display: none;
+    align-items: center;
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: space-between;
+    margin: (4 * $gutter) (2 * $gutter) (2 * $gutter) (2 * $gutter);
+    .btn-group {
+        flex: 0 1 auto;
+    }
+    .dropup {
+        flex: 1 1 auto;
+        text-align: center;
+    }
+    .dropdown-toggle {
+        float: none;
+    }
+    .pager li a,
+    .pager li a:visited,
+    .pager li span {
+        border-radius: 4px;
+        color: map-get($colors, dark);
+        &:hover,
+        &:hover span {
+            background-color: map-get($colors, highlight);
+            color: map-get($colors, lightest);
+        }
+    }
+    .pager li.disabled a,
+    .pager li.disabled a:visited,
+    .pager li.disabled span {
+        color: map-get($colors, medium);
+        &:hover,
+        &:hover span {
+            background-color: map-get($colors, lightest);
+            color: map-get($colors, medium);
+        }
+    }
 }
 .loading-indicator {
     height: $tile-loading-size + (3 * $gutter);
@@ -46,19 +84,9 @@ body {
         padding: 15px;
     }
 }
-@media (min-width: 768px) {
-    body {
-        padding-top: 70px;
-    }
-    .navbar .nav-container {
-        flex-direction: row;
-    }
-    .navbar-header {
-        display: block;
-    }
-    .navbar .nav-container .navbar-form {
-        margin: 8px -15px;
-    }
+::selection {
+    color: map-get($colors, lightest);
+    background: map-get($colors, highlight);
 }
 
 @keyframes loading {

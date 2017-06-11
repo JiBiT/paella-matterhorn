@@ -96,6 +96,7 @@ gulp.task('beuth', function () {
 
     var s2 = gulp.src(filesToCopy)
         .pipe(gulpif('paella-opencast/javascript/opencast-engage.js', replace('$HOST_URL', process.env.HOST_URL)))
+        .pipe(gulpif('paella-opencast/javascript/opencast-engage-search.js', replace('$HOST_URL', process.env.HOST_URL)))
         .pipe(gulp.dest('build/'));
 
     return mergeStream(s1, s2);

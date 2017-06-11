@@ -1,17 +1,26 @@
 .navbar {
     background-color: map-get($colors, highlight);
-    padding: 0 (2 * $gutter);
+    padding-left: 2 * $gutter;
+    .container {
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+    }
     .navbar-header {
         justify-content: center;
-        display: flex;
+        display: block;
+    }
+    .navbar-brand {
+        padding: 12px 12px;
     }
     .beuth-logo {
         background-color: white;
-        padding: 6 * $gutter;
+        padding: (6 * $gutter) (2 * $gutter);
         border-radius: $gutter;
         box-shadow: 0 0 2px 1px rgba(0, 0, 0, .1);
         img {
             max-height: 100%;
+            margin-top: $gutter;
         }
     }
     .nav-container {
@@ -20,11 +29,12 @@
         flex-wrap: nowrap;
         align-items: center;
         justify-content: space-between;
-        display: none; // display: flex;
+        display: flex;
         .navbar-form {
             border: 0;
             box-shadow: none;
             margin: 0;
+            padding: 0;
         }
         .navbar-left,
         .navbar-right {
@@ -37,24 +47,25 @@
             flex-direction: row;
             justify-content: space-between;
             width: 100%;
-            .form-group,
-            input {
+            .form-group {
                 width: 100%;
             }
             button {
                 appearance: none;
                 background: transparent;
-                border: 0;
+                border: 1px solid transparent;
                 border-radius: 0;
                 color: map-get($colors, lightest);
                 font-size: map-get($font-sizes, search-icon);
                 font-weight: 700;
                 padding: $gutter;
                 outline: 0;
+                height: $navbar-height;
+                width: $navbar-height;
                 &:active,
                 &:focus,
                 &:hover {
-                    border: 0;
+                    border: 1px solid transparent;
                     outline: 0;
                 }
                 &:hover {
@@ -63,22 +74,7 @@
                     color: map-get($colors, highlight);
                 }
             }
-            input {
-                appearance: none;
-                background: transparent;
-                border: 0;
-                border-bottom: 1px solid map-get($colors, lightest);
-                border-radius: 0;
-                box-shadow: none;
-                color: map-get($colors, lightest);
-                transition: all .1s ease;
-                &:focus {
-                    border-bottom-width: 5px;
-                }
-                &::placeholder {
-                    color: map-get($colors, lightest);
-                }
-            }
         }
     }
 }
+@import 'search';

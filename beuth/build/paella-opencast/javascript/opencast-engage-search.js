@@ -1,6 +1,6 @@
 (function () {
     var HOST_URL = '$HOST_URL';
-    var app = angular.module('opencastEngage', ['infinite-scroll']);
+    var app = angular.module('opencastEngageSearch', []);
     app.directive('opencastEpisode', [function () {
         return {
             restrict: 'E',
@@ -61,21 +61,43 @@
         };
     }]);
 
-    app.controller('OpencastEngageController', ['$scope', '$http', function ($scope, $http) {
+    app.controller('OpencastEngageSearchController', ['$scope', '$http', function ($scope, $http) {
         $scope.search = function () {
             $scope.q = $scope.newSearch;
-            $scope.reloadPage('search.html');
+            $scope.reloadPage();
         };
 
-        $scope.reloadPage = function (url) {
-            var u = url || '';
-            $scope.page = 0;
+        $scope.reloadPage = function () {
             var q = $scope.newSearch || $scope.q || "";
             var limit = parseInt($scope.limitText) || 20;
             var page = $scope.page || 0;
             var sort = $scope.sort || "";
 
-            window.location.href = u + '?limit=' + limit + '&page=' + page + '&q=' + q + '&sort=' + sort;
+            window.location.href = '?limit=' + limit + '&page=' + page + '&q=' + q + '&sort=' + sort;
+        };
+
+        $scope.goFirstPage = function () {
+            if ($scope.page <= 0) return;
+            $scope.page = 0;
+            $scope.reloadPage();
+        };
+
+        $scope.goLastPage = function () {
+            if ($scope.page >= $scope.lastPage) return;
+            $scope.page = $scope.lastPage;
+            $scope.reloadPage();
+        };
+
+        $scope.goNextPage = function () {
+            if ($scope.page >= $scope.lastPage) return;
+            $scope.page = $scope.page + 1;
+            $scope.reloadPage();
+        };
+
+        $scope.goPreviousPage = function () {
+            if ($scope.page <= 0) return;
+            $scope.page = $scope.page - 1;
+            $scope.reloadPage();
         };
 
         $scope.getOpencastEpisodes = function () {
@@ -96,25 +118,6 @@
             });
         };
 
-        $scope.getMoreEpisodes = function () {
-            if ($scope.page <= $scope.lastPage) {
-                $scope.page++;
-
-                var q = $scope.q || "";
-                var limit = parseInt($scope.limitText) || 20;
-                var page = $scope.page || 0;
-                var offset = page * limit;
-                var sort = $scope.sort || "";
-                var url = HOST_URL + '/search/episode.json?limit=' + limit + '&offset=' + offset + '&q=' + q + '&sort=' + sort;
-
-                $scope.loading = true;
-                $http.get(url).then(function (res) {
-                    $scope.searchResult.result = $scope.searchResult.result.concat(res.data['search-results'].result);
-                    $scope.loading = false;
-                });
-            }
-        };
-
         $scope.itemsPerPage = function (v) {
             $scope.limitText = v;
             $scope.reloadPage();
@@ -126,10 +129,6 @@
             var p = x.split("=");
             search[p[0]] = p[1];
         });
-
-        if (search.q && search.q !== '') {
-            location.href = 'search.html' + window.location.search;
-        }
 
         $scope.limitText = 20;
 
@@ -151,6 +150,7 @@
         });
 
         $scope.getOpencastEpisodes();
+
     }]);
 
 })();

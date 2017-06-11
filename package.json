@@ -13,6 +13,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-clean": "^0.3.2",
+    "gulp-env": "^0.4.0",
     "gulp-live-server": "0.0.30",
     "gulp-postcss": "^7.0.0",
     "gulp-sass": "^3.1.0",

@@ -90,13 +90,13 @@
             <h1 class="player-title">{{currentItem.dcTitle}}</h1>
             <div id="playerContainer"></div>
             <div class="info-container">
-                <p class="description">
+                <p class="description" ng-if="currentItem.dcDescription">
                     <span>Beschreibung:</span> {{currentItem.dcDescription}}
                 </p>
-                <p class="created">
+                <p class="created" ng-if="currentItem.dcCreated">
                     <span>Erstellt am:</span> {{dateToText(currentItem.dcCreated)}}
                 </p>
-                <p class="created">
+                <p class="length" ng-if="currentItem.dcExtent">
                     <span>Länge:</span> {{secondsToText(currentItem.dcExtent)}}
                 </p>
             </div>
@@ -116,13 +116,11 @@
             </ul>
         </footer>
         <script>
-
-
-
             body.onload = function() {
                 /* LIVE */
-                //loadOpencastPaella('playerContainer', {});
+                loadOpencastPaella('playerContainer');
                 /* TEST */
+                /*
                 paella.load('playerContainer', {
                     data: {
                         "streams": [{
@@ -154,9 +152,8 @@
                         }]
                     }
                 });
-
+            */
             };
-
         </script>
 	</body>
 </html>

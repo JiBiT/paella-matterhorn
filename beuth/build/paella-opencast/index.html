@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="css/custom.css"/>
 </head>
 <body ng-controller="OpencastEngageController">
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<header class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbarheader">
             <a class="navbarbrand beuth-logo" href="/">
@@ -51,8 +51,8 @@
             </form>
         </div>
     </div>
-</div>
-<div class="container">
+</header>
+<main class="container">
     <div class="hero-image">
         <img src="images/beuthbox-banner.jpg" alt="BeuthBox: Beuth Hochschule für Technik Berlin" />
     </div>
@@ -60,20 +60,20 @@
         <opencast-episode class="opencast-episode" ng-repeat="r in searchResult.result" ng-if="r.id" episode="r"></opencast-episode>
     </div>
     <div ng-show="loading" class="loading-indicator"></div>
-    <footer infinite-scroll="getMoreEpisodes()" infinite-scroll-distance="0">
-        <ul class="links links-left">
-            <li>
-                <a class="impressum" href="https://www.beuth-hochschule.de/impressum/">Impressum/Datenschutz</a>
-            </li>
-        </ul>
-        <ul class="links links-right">
-            <li>
-                <a class="logo-beuth" href="https://www.beuth-hochschule.de/">
-                    <img src="images/beuth-logo.png" alt="Beuth Hochschule für Technik Berlin" />
-                </a>
-            </li>
-        </ul>
-    </footer>
-</div>
+</main>
+<footer infinite-scroll="getMoreEpisodes()" infinite-scroll-distance="0">
+    <ul class="links links-left">
+        <li>
+            <a class="impressum" href="https://www.beuth-hochschule.de/impressum/">Impressum/Datenschutz</a>
+        </li>
+    </ul>
+    <ul class="links links-right">
+        <li>
+            <a class="logo-beuth" href="https://www.beuth-hochschule.de/">
+                <img src="images/beuth-logo.png" alt="Beuth Hochschule für Technik Berlin" />
+            </a>
+        </li>
+    </ul>
+</footer>
 </body>
 </html>

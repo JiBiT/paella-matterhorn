@@ -68,12 +68,10 @@
         };
 
         $scope.reloadPage = function () {
-            var q = $scope.newSearch || $scope.q || "";
             var limit = parseInt($scope.limitText) || 20;
             var page = $scope.page || 0;
             var sort = $scope.sort || "";
-
-            window.location.href = '?limit=' + limit + '&page=' + page + '&q=' + q + '&sort=' + sort;
+            window.location.href = u + '?limit=' + limit + '&page=' + page + '&q=' + $scope.searchItem + '&sort=' + sort;
         };
 
         $scope.goFirstPage = function () {

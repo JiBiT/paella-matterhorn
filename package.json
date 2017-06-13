@@ -11,7 +11,7 @@
     "start": "gulp beuth-serve"
   },
   "dependencies": {
-    "PaellaPlayer": "dazlious/paella.git#5.1.13",
+    "PaellaPlayer": "dazlious/paella.git",
     "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^4.0.0",

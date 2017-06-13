@@ -24,18 +24,17 @@
         };
 
         $scope.search = function () {
+            $scope.q = $scope.newSearch;
             $scope.reloadPage('search.html');
         };
 
         $scope.reloadPage = function (url) {
             var u = url || '';
             $scope.page = 0;
-            var q = $scope.newSearch || $scope.q || "";
             var limit = parseInt($scope.limitText) || 20;
             var page = $scope.page || 0;
             var sort = $scope.sort || "";
-
-            window.location.href = u + '?limit=' + limit + '&page=' + page + '&q=' + q + '&sort=' + sort;
+            window.location.href = u + '?limit=' + limit + '&page=' + page + '&q=' + $scope.searchItem + '&sort=' + sort;
         };
 
         $scope.main = function() {
@@ -50,7 +49,6 @@
                     var possibleResults = data.data['search-results'];
                     if (possibleResults.result) {
                         $scope.currentItem = possibleResults.result;
-                        console.log($scope.currentItem);
                     }
                 });
             }

@@ -14,7 +14,6 @@ function runSequence( tasks ) {
     if( !tasks || tasks.length <= 0 ) return;
     const task = tasks[0];
     gulp.start( task, function() {
-        console.log( task + " finished" );
         runSequence( tasks.slice(1) );
     });
 }
@@ -24,13 +23,12 @@ gulp.task('paella-opencast:clean', function () {
 });
 
 
-gulp.task('paella-opencast:prepare:source', function () {
+gulp.task('paella-opencast:prepare:source', ['set-prod-env'], function () {
     var s1 = gulp.src('node_modules/paellaplayer/**').pipe(gulp.dest('build/paella'));
     var s2 = gulp.src('paella-opencast/plugins/**').pipe(gulp.dest('build/paella/plugins'));
 
     return mergeStream(s1, s2);
 });
-
 
 gulp.task('paella-opencast:prepare', ['paella-opencast:prepare:source'], function (cb) {
     var cmd_npm = spawn('npm', ['install'], {cwd: 'build/paella', stdio: 'inherit'});
@@ -39,24 +37,21 @@ gulp.task('paella-opencast:prepare', ['paella-opencast:prepare:source'], functio
     });
 });
 
-
 gulp.task('paella-opencast:compile.debug', ['paella-opencast:prepare'], function (cb) {
-    var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.debug'], {cwd: 'build/paella'/*, stdio: 'inherit'*/});
+    var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.debug'], {cwd: 'build/paella'});
     cmd_npm.on('close', function (code) {
         cb(code);
     });
 });
 
 gulp.task('paella-opencast:compile.release', ['paella-opencast:prepare'], function (cb) {
-    var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.release'], {cwd: 'build/paella'/*, stdio: 'inherit'*/});
+    var cmd_npm = spawn('node', ['node_modules/gulp/bin/gulp.js', 'build.release'], {cwd: 'build/paella'});
     cmd_npm.on('close', function (code) {
-        console.log(code);
         cb(code);
     });
 });
 
-
-gulp.task('paella-opencast:build', ['set-prod-env', "paella-opencast:compile.debug"], function () {
+gulp.task('paella-opencast:build', function () {
     runSequence(['paellaCustomBuild', 'beuth']);
 });
 
@@ -75,7 +70,7 @@ gulp.task('default', ['paella-opencast:build']);
 
 /* CUSTOM */
 gulp.task('beuth', function () {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.ENVIRONMENT === 'production') {
         gulp.src('build/paella-opencast/info', {read: false}).pipe(clean());
         gulp.src('build/paella-opencast/search', {read: false}).pipe(clean());
     }
@@ -89,7 +84,7 @@ gulp.task('beuth', function () {
 
     var filesToCopy = ['beuth/build/**/*', '!beuth/build/paella-opencast/{scss,scss/**}'];
 
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.ENVIRONMENT !== 'development') {
         filesToCopy.push('!beuth/build/paella-opencast/{info,info/**}');
         filesToCopy.push('!beuth/build/paella-opencast/{search,search/**}');
     }
@@ -114,19 +109,15 @@ gulp.task('beuth-serve', ['set-dev-env'], function() {
 });
 
 gulp.task('set-dev-env', function() {
-    env({
-        vars: {
-            HOST_URL: 'http://141.64.153.82:8080',
-            NODE_ENV: "development"
-        }
+    env.set({
+        HOST_URL: 'http://141.64.153.82:8080',
+        ENVIRONMENT: "development"
     });
 });
 
 gulp.task('set-prod-env', function() {
-    env({
-        vars: {
-            HOST_URL: '',
-            NODE_ENV: "production"
-        }
+    env.set({
+        HOST_URL: '',
+        ENVIRONMENT: "production"
     });
 });

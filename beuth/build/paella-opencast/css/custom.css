@@ -2719,7 +2719,7 @@ footer {
         justify-content: space-between; }
 
 #playerContainer {
-  background: #e0efef !important;
+  background: #fff !important;
   display: block;
   margin: 20px 0;
   position: relative;
@@ -2731,10 +2731,14 @@ footer {
   #playerContainer_controls {
     padding-bottom: 56px; }
   #playerContainer_videoContainer_container {
+    -webkit-box-shadow: inset 0 0 200px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 200px 0 rgba(0, 0, 0, 0.5);
     height: 100% !important;
     position: absolute !important;
     top: 0 !important;
     width: 100% !important; }
+  #playerContainer_videoContainer_bkg {
+    display: none; }
 
 .container.player-container {
   max-width: 1024px;

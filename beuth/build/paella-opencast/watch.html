@@ -30,7 +30,7 @@
         <script type="text/javascript" src="javascript/player-watch.js"></script>
 
         <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" type="text/css" media="screen" charset="utf-8">
-		<link rel="stylesheet" href="resources/style/style_dark.css" id="paellaSkin" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="resources/style/style_beuth.css" id="paellaSkin" type="text/css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="css/custom.css"/>
         <style>
             html,
@@ -118,7 +118,9 @@
         <script>
             body.onload = function() {
                 /* LIVE */
-                loadOpencastPaella('playerContainer');
+                loadOpencastPaella('playerContainer').then(function() {
+                    paella.utils.skin.set("beuth");
+                });
                 /* TEST */
                 /*
                 paella.load('playerContainer', {
